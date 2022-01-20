@@ -13,7 +13,7 @@ export class UserService {
   userCollection: AngularFirestoreCollection<User>;
   user:Observable<User[]>;
   userDoc:AngularFirestoreDocument<User>;
-  url="http://localhost:5000";
+  url="https://firstfire-signup.herokuapp.com/";
   key:string="";
   username:string=""
   constructor(public afs: AngularFirestore, private http:HttpClient) { 
