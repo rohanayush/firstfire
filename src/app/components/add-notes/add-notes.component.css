@@ -1,0 +1,113 @@
+
+.card{
+    border-radius:11px;
+    box-shadow:2px 2px 2px 2px grey;
+    width:95%;
+    text-align: center;
+    left:1%;
+    transition: all 0.1s ease;
+    /* background-color: palevioletred; */
+}
+.wall{
+    /* position: absolute; */
+    /* float:right; */
+    top:10%;
+    margin-top:12px;
+    overflow: auto;
+    /* height: 100vh; */
+}
+.dark_mode{
+    background: black;
+    color:white;
+    transition: background 0.3s ease ;
+    
+}
+.dark_mode input{
+  color:white;
+  
+}
+
+.modes{
+    padding:10px;
+}
+
+.form-switch {
+    display: inline-block;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .form-switch i {
+    position: relative;
+    display: inline-block;
+    margin-right: .5rem;
+    width: 46px;
+    height: 26px;
+    background-color: #6f6f70;
+    border-radius: 23px;
+    vertical-align: text-bottom;
+    transition: all 0.3s linear;
+  }
+  label{
+    z-index:-1;
+  }
+  
+  .form-switch i::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 42px;
+    height: 22px;
+    background-color: rgb(8, 7, 7);
+    border-radius: 11px;
+    transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+    transition: all 0.25s linear;
+  }
+  
+  .form-switch i::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    background-color: #4BD763;
+    border-radius: 11px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
+    transform: translate3d(2px, 2px, 0);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .form-switch:active i::after {
+    width: 28px;
+    transform: translate3d(2px, 2px, 0);
+    
+  }
+
+  
+  .form-switch:active input:checked + i::after { transform: translate3d(16px, 2px, 0); }
+  
+  .form-switch input { display: none; }
+  
+  .form-switch input:checked + i { background-color: rgb(185, 180, 180); }
+  
+  .form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
+  
+  .form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
+
+  .msg{
+    position:fixed;
+    top:20%;
+    /* left:20%; */
+    height:100vh;
+    width:100%;
+    text-align: center;
+    font-weight: bold;
+    background: white;
+    box-shadow: 2px 3px silver;
+}
+@media screen and (min-width:660px) {
+  .card{
+    width:60%;
+    margin:0 auto;
+  }
+}

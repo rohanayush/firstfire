@@ -1,0 +1,83 @@
+<div class="top">
+    <div >
+      <button (click)="switch()" style="margin-right:1rem; border: none;background: none" [ngClass]="sign?'':'active'" [disabled]="sign" > SignUp</button>
+    </div>
+    <div >
+        <button (click)="switch()" style="margin-right:1rem; border: none;background: none" [ngClass]="sign?'active':''" [disabled]="!sign" >   SignIn</button>
+    </div>
+</div>
+
+<div class=" card"  *ngIf="sign">
+    <div class="card-content animate__animated animate__fadeInDown">
+        <span class="card-title">Sign up</span>
+        <form (ngSubmit)="onSignUp()" class="col s6" >
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" placeholder="username" [(ngModel)]="user.username" name="title">
+                    <label>Username</label>
+                </div>
+                <div class="input-field col s6">
+                   <input type="text" placeholder="Password" [(ngModel)]="user.password" name="password">
+                   <label>Password</label>
+               </div>
+               <div class="input-field col s6">
+                <input type="text" placeholder="Mail" [(ngModel)]="user.email" name="email">
+                <label>Mail</label>
+            </div>
+           
+               <div><input type="submit" value="SignUp" class="btn"></div>
+         
+            </div>
+
+        </form>
+        
+    </div>
+</div>
+
+<div class=" card verify"  *ngIf="verify">
+    <div class="card-content animate__animated animate__fadeInDown">
+        <span class="card-title">Sign up</span>
+        <form (ngSubmit)="verify_key()" class="col s6" >
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" placeholder="token" [(ngModel)]="user.key" name="title">
+                    <label>Token</label>
+                </div>
+               
+           
+               <div><input type="submit"  value="Verify" class="btn"></div>
+         
+            </div>
+
+        </form>
+        
+    </div>
+</div>
+
+
+<div class=" card" *ngIf="!sign">
+    <div class="card-content animate__animated animate__fadeInDown">
+        <span class="card-title">Sign in</span>
+        <form (ngSubmit)="onSignIn()" class="col s6">
+            <div class="row">
+                <div class="input-field col s4">
+                    <input type="text" placeholder="Username" [(ngModel)]="user.username" name="title">
+                    <label>Username</label>
+                </div>
+                <div class="input-field col s4">
+                   <input type="text" placeholder="Password" [(ngModel)]="user.password"  name="content">
+                   <label>Password</label>
+               </div>
+           
+               <input type="submit"  value="SignIN" class="btn">
+         
+            </div>
+
+        </form>
+        
+    </div>
+</div>
+<div class="sign_msg" *ngIf="signin_msg">
+    Signed in Succesfully! 
+    <button [routerLink]="['/notes']"class="btn btn-sucess">Proceed</button>
+</div>

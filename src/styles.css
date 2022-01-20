@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    transition: all 0.1s ease;
+
+}
+@media screen and (min-width:660px) {
+    .card{
+      width:60%;
+      margin:0 auto;
+    }
+  }

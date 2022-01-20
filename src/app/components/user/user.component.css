@@ -1,0 +1,40 @@
+.active{
+    color:rgb(43, 187, 173);
+    font-weight: bold;
+}
+label{
+    z-index:-1;
+  }
+.verify{
+    z-index:1001;
+    top:20%;
+    position: fixed;
+    width: 100%;
+}
+.sign_msg{
+    position:fixed;
+    top:15%;
+    /* left:20%; */
+    height:100vh;
+    width:100%;
+    text-align: center;
+    font-weight: bold;
+    background: white;
+    box-shadow: 2px 3px silver;
+}
+.top{
+    display: flex; padding:1rem;width:20%;margin:0 auto;
+}
+
+@media screen and (min-width:660px) {
+    .card{
+      width:60%;
+      margin:0 auto;
+    }
+  }
+  @media screen and (max-width:660px) {
+      .top{
+        /* display: flex; padding:1rem; */
+        margin:0;
+      }
+  }

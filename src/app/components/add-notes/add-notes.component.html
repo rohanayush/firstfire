@@ -1,0 +1,36 @@
+ <div class="wall" [ngClass]="theme?'dark_mode':''">
+   <span class="modes" *ngIf="theme" (click)="changeTheme()"><i class="fa fa-sun-o" aria-hidden="true"></i></span>
+   <span class="modes" *ngIf="!theme" (click)="changeTheme()"><i class="fa fa-star" aria-hidden="true"></i></span>
+   {{usr}}   
+   <button style="margin-right:2rem; position: absolute;right:5%;border: none;background: none;color:rgb(43, 187, 173)" (click)="logout()" >Logout</button>
+       
+
+ </div>
+
+ <div class=" card"  [ngClass]="theme?'dark_mode':''">
+     <div class="card-content animate__animated animate__fadeInDown">
+         <span class="card-title">Add Notes</span>
+         <form (ngSubmit)="onSubmit()" class="col s6">
+             <div class="row">
+                 <div class="input-field col s6">
+                     <input type="text" placeholder="title" [(ngModel)]="note.title" name="title">
+                     <label>Title</label>
+                 </div>
+                 <div class="input-field col s6">
+                    <input type="text" placeholder="content" [(ngModel)]="note.content" name="content">
+                    <label>Content</label>
+                </div>
+                <input type="submit" value="Submit" class="btn">
+          
+             </div>
+
+         </form>
+     </div>
+ </div>
+ <app-notes></app-notes>
+ <div class="msg" *ngIf="msg">
+     Succesfully Looged Out!
+      <button [routerLink]="['/']" class="btn btn-info">Go to Login Page</button>
+ </div>
+
+ <div #mydiv [routerLink]="['/']" class="something"></div>

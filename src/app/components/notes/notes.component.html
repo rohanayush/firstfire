@@ -1,0 +1,71 @@
+
+<div class="top">
+    <div  (click)="rec_class()" class="note">
+       <button [disabled]="note_active" style="margin-right:2rem; border: none;background: none" [ngClass]="note_active?'':'active'" >Notes</button>  
+    </div>
+    <div (click)="rec_class()"  class="recommendations">
+        <button [disabled]="!note_active" style="margin-right:2rem; border: none;background: none" [ngClass]="!note_active?'':'active'" >Recommendations</button>  
+
+    </div>
+</div>
+
+
+<div *ngIf="note_active">
+<div *ngIf="notes?.length > 0;else noNotes">
+    <ul *ngFor="let note of notes_user"  class="collection">
+        <div >
+        <li  class="collection-item">
+            {{note.title}}
+            <span style=" padding:20px; margin:20px">
+            {{note.content}}
+        </span>
+        
+         <i class="fa fa-pencil" (click)="onPencil($event,note)"></i>
+            <!-- {{ note.token}} -->
+            
+        </li>    
+        <div *ngIf="editState == true && editNote.id === note.id">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" placeholder="Add Title" [(ngModel)]="note.title" name="title">
+                    <label>Title</label>
+                </div>
+                <div class="input-field col s6">
+                   <input type="text" placeholder="Add content" [(ngModel)]="note.content" name="content">
+                   <label>Content</label>
+               </div>
+               <input type="button" value="Update"(click)="update($event,note)" class="btn orange">&nbsp;&nbsp;&nbsp;
+               <input class="animate__animated animate__fadeInDown" (click)="delete($event,note)" type="button" value="Delete" class="btn red">&nbsp;&nbsp;&nbsp;
+               <input class="btn black" type="button" value="cancel" (click)="collapse($event,note)">
+
+
+         
+            </div>
+        </div>
+        </div>
+        
+    </ul>
+</div>
+
+<ng-template #noNotes>
+    <h5>No content found. Please check collection name. Check capital,small...</h5>
+</ng-template>
+</div>
+<div class="parent-card" *ngIf="!note_active">
+    <div *ngFor="let o of recommend"  class="card">
+        <div class="img">
+               <img src="{{o.urlToImage}}">
+        </div>
+        <div class="lg-screen">
+        <div class="title">
+                 {{o.title}}
+        </div>
+        <div class="content">
+                  {{o.content}}
+        </div>
+        <div class="link">
+          <a href="{{o.url}}" target="blank">Read More...</a>
+        </div>
+        </div>
+    </div>
+</div>
