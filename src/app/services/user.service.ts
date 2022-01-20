@@ -68,6 +68,6 @@ export class UserService {
   }
   update(user:User){
     this.userDoc = this.afs.doc(`logg/${user.id}`);
-    this.userDoc.update(user);
+    this.userDoc.update(user); 
   } 
 }
