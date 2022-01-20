@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class UserService {
 
   userCollection: AngularFirestoreCollection<User>;
-  user:Observable<User[]>;
+  user:Observable<User[]>; 
   userDoc:AngularFirestoreDocument<User>;
   url="https://firstfire-signup.herokuapp.com/";
   key:string="";
