@@ -45,7 +45,7 @@ export class UserService {
   getUsername(){
     return this.username;
   }
-  getuser(){
+  getuser(){ 
     return this.user;
   }
 
@@ -69,5 +69,5 @@ export class UserService {
   update(user:User){
     this.userDoc = this.afs.doc(`logg/${user.id}`);
     this.userDoc.update(user);
-  }
+  } 
 }
