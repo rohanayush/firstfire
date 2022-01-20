@@ -10,7 +10,7 @@ import { stringify } from 'querystring';
   providedIn: 'root'
 })
 export class NotesService {
-  url="https://firstfire-recommend.herokuapp.com/"
+  url="https://firstfire-recommend.herokuapp.com"
   notesCollection: AngularFirestoreCollection<Notes>;
   notes:Observable<Notes[]>;
   notesDoc:AngularFirestoreDocument<Notes>;
