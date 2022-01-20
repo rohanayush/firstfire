@@ -49,7 +49,7 @@ export class UserService {
     return this.user;
   }
 
-
+ 
   verifyUser(token,email){
        var url= this.url +"/suggest";
        var ar=[]
