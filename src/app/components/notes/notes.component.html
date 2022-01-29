@@ -3,24 +3,27 @@
     <div  (click)="rec_class()" class="note">
        <button [disabled]="note_active" style="margin-right:2rem; border: none;background: none" [ngClass]="note_active?'':'active'" >Notes</button>  
     </div>
-<!--     <div (click)="rec_class()"  class="recommendations">
+    <div (click)="rec_class()"  class="recommendations">
         <button [disabled]="!note_active" style="margin-right:2rem; border: none;background: none" [ngClass]="!note_active?'':'active'" >Recommendations</button>  
 
-    </div> -->
+    </div>
 </div>
 
 
 <div *ngIf="note_active">
-<div *ngIf="notes?.length > 0;else noNotes">
+<div *ngIf="notes?.length > 0;else noNotes" class="notes_css">
     <ul *ngFor="let note of notes_user"  class="collection">
         <div >
-        <li  class="collection-item">
-            {{note.title}}
+        <li   class="collection-item">
+            <span style="color:teal; font-weight: bolder;">{{note.title}}</span>
             <span style=" padding:20px; margin:20px">
             {{note.content}}
         </span>
         
          <i class="fa fa-pencil" (click)="onPencil($event,note)"></i>
+         <i style="margin-left:20px;color:red" class="fa fa-trash" (click)="delete($event,note)"></i>
+
+         <!-- <input class="animate__animated animate__fadeInDown"  type="button" value="Delete" class="btn red"> -->
             <!-- {{ note.token}} -->
             
         </li>    

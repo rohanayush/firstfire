@@ -11,6 +11,7 @@ import { stringify } from 'querystring';
 })
 export class NotesService {
   url="https://firstfire-recommend.herokuapp.com"
+  // url="http://localhost:5300"
   notesCollection: AngularFirestoreCollection<Notes>;
   notes:Observable<Notes[]>;
   notesDoc:AngularFirestoreDocument<Notes>;
@@ -33,10 +34,10 @@ export class NotesService {
 
   getRecommendation(note){
     console.log("reaching service", note)
-    if(note.length===0){
-      var a=["a"]
-      return this.http.post(this.url+"/recommend",a);
-    }
+    // if(note.length===0){
+    //   var a=["a"]
+    //   return this.http.post(this.url+"/recommend",a);
+    // }
     return this.http.post(this.url+"/recommend",note);
   }
   getNotes(){

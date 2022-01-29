@@ -16,6 +16,10 @@
     border-color: #fff transparent #fff transparent;
     animation: lds-hourglass 1.2s infinite;
   }
+  .notes_css{
+    height:40vh;
+    overflow: auto;
+  }
  
   @keyframes lds-hourglass {
     0% {

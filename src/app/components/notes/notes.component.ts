@@ -16,6 +16,7 @@ export class NotesComponent implements OnInit {
   notes : Notes[];
   usr=""
   token=""
+  content=[]
   constructor(private notesService:NotesService, private user:UserService ) { 
     this.token=localStorage.getItem("key");
     console.log("token",this.token)
@@ -32,12 +33,15 @@ export class NotesComponent implements OnInit {
        },
      );
      console.log("notes of user", this.notes_user)
-     this.notesService.getRecommendation(this.notes_user).subscribe(
+     for(var i=0;i < this.notes_user.length;i++){
+       this.content.push(this.notes_user[i]["content"]);
+     }
+     console.log("content:",this.content)
+     this.notesService.getRecommendation(this.content).subscribe(
        (data:any)=>{
          console.log("data",data);
          this.store=data;
-         console.log("this.store",this.store[0].articles)
-        //  this.recommend=this.store[0].articles;
+     
          for(var i=0;i < this.store.length;i++){
             for (var j=0; j< this.store[i].articles.length;j++){
                   this.recommend.push(this.store[i].articles[j]);

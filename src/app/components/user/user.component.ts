@@ -134,8 +134,8 @@ ngAfterViewInit() {}
   key=""
   signin_msg=false;
   onSignIn(){
-    this.username="";
-    this.key="";
+    // this.username="";
+    // this.key="";
       if(this.a[this.user.username] === this.user.password){
         this.username=this.user.username;
         console.log("username caught",this.username);
