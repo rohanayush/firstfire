@@ -46,6 +46,7 @@
                
            
                <div><input type="submit"  value="Verify" class="btn"></div>
+               <button style="position:Absolute;top:1%;right:3%;background:none;border-radius:11px;padding:0.3rem;box-shadow:2px 2px 2px 2px silver;border:none;" (click)="dismiss_verify()">X</button>
          
             </div>
 
@@ -53,7 +54,24 @@
         
     </div>
 </div>
-
+<div class="wrap1" *ngIf="verify && msging">
+    <div class="wait1" style="
+                                padding:10px;" (click)="dismissMsg()">
+      {{message}}
+      <p
+        style="font-size: 15px;background:#262626;color:white;padding:6px;position:absolute;bottom:3%;border-radius:12px">
+        Tap me anywhere to dismiss me</p>
+    </div>
+  </div>
+  
+  <div class="wrap1 " style="top:30%" *ngIf="msging && err">
+    <div class="wait1" style="background: linear-gradient(white,rgb(102, 2, 2));padding:10px;" (click)="dismissMsg()">
+      {{message}}
+      <p
+        style="font-size: 15px;background:#262626;color:white;padding:6px;position:absolute;bottom:3%;border-radius:12px">
+        Tap me anywhere to dismiss me</p>
+    </div>
+  </div>
 
 <div class=" card" *ngIf="!sign">
     <div class="card-content animate__animated animate__fadeInDown">
