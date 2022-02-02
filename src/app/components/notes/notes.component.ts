@@ -12,6 +12,7 @@ export class NotesComponent implements OnInit {
 
   editState:boolean=false;
   editNote:Notes;
+  load=true;
 
   notes : Notes[];
   usr=""
@@ -42,6 +43,7 @@ export class NotesComponent implements OnInit {
             }
          }
          this.recommend=this.shuffle(this.recommend)
+         this.load=false;
        }
      )
   
