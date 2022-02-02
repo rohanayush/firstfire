@@ -126,7 +126,7 @@ export class NotesComponent implements OnInit {
     this.notesService.update(note);
     this.collapse(event,note);
     this.constructor();
-
+ 
   }
 
 }
