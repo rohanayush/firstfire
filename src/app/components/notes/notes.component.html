@@ -9,7 +9,12 @@
     </div>
 </div>
 
+<div class="wrap2" *ngIf="load">
+    <div class="wait2">
+        <div class="loader"></div>
+    </div>
 
+</div>
 <div *ngIf="note_active">
 <div *ngIf="notes?.length > 0;else noNotes" class="notes_css">
     <ul *ngFor="let note of notes_user"  class="collection">
