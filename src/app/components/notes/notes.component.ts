@@ -18,28 +18,21 @@ export class NotesComponent implements OnInit {
   token=""
   content=[]
   constructor(private notesService:NotesService, private user:UserService ) { 
-    this.token=localStorage.getItem("key");
-    console.log("token",this.token)
-    this.usr=localStorage.getItem("usr");
-    console.log("user",this.usr)
+   this.token=this.user.getKey();
+      this.usr=this.user.getUsername();
      this.notesService.getNotes().subscribe( 
       notes => {
-      //  console.log(notes);
-      console.log(notes)
       this.notes = notes;
      this.notes_user= this.notes.filter(
        (note)=>{
          return note.token == this.token;
        },
      );
-     console.log("notes of user", this.notes_user)
      for(var i=0;i < this.notes_user.length;i++){
        this.content.push(this.notes_user[i]["content"]);
      }
-     console.log("content:",this.content)
      this.notesService.getRecommendation(this.content).subscribe(
        (data:any)=>{
-         console.log("data",data);
          this.store=data;
      
          for(var i=0;i < this.store.length;i++){
@@ -49,7 +42,6 @@ export class NotesComponent implements OnInit {
             }
          }
          this.recommend=this.shuffle(this.recommend)
-         console.log("this recommendations:",this.recommend);
        }
      )
   
