@@ -23,17 +23,14 @@ export class AddNotesComponent implements OnInit {
 triggerFalseClick() {
   el:ElementRef;
 
-  console.log("token",this.token)
   if(this.token==""){
     let el: HTMLElement = this.myDiv.nativeElement;
     el.click();
   }
 }
   constructor(private notesService:NotesService, private user:UserService ) { 
-      this.token=localStorage.getItem("key");
-      console.log("token",this.token)
-      this.usr=localStorage.getItem("usr");
-      console.log("user",this.usr)
+      this.token=this.user.getKey();
+      this.usr=this.user.getUsername();
 
       if(this.usr===""){
         this.triggerFalseClick();
