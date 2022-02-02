@@ -1,74 +1,159 @@
-
 <div class="top">
-    <div  (click)="rec_class()" class="note">
-       <button [disabled]="note_active" style="margin-right:2rem; border: none;background: none" [ngClass]="note_active?'':'active'" >Notes</button>  
+    <div>
+        <button (click)="switch()" style="margin-right:1rem; border: none;background: none" [ngClass]="sign?'':'active'"
+            [disabled]="sign"> SignUp</button>
     </div>
-    <div (click)="rec_class()"  class="recommendations">
-        <button [disabled]="!note_active" style="margin-right:2rem; border: none;background: none" [ngClass]="!note_active?'':'active'" >Recommendations</button>  
-
+    <div>
+        <button (click)="switch()" style="margin-right:1rem; border: none;background: none" [ngClass]="sign?'active':''"
+            [disabled]="!sign"> SignIn</button>
     </div>
 </div>
 
-
-<div *ngIf="note_active">
-<div *ngIf="notes?.length > 0;else noNotes" class="notes_css">
-    <ul *ngFor="let note of notes_user"  class="collection">
-        <div >
-        <li   class="collection-item">
-            <span style="color:teal; font-weight: bolder;">{{note.title}}</span>
-            <span style=" padding:20px; margin:20px">
-            {{note.content}}
-        </span>
-        
-         <i class="fa fa-pencil" (click)="onPencil($event,note)"></i>
-         <i style="margin-left:20px;color:red" class="fa fa-trash" (click)="delete($event,note)"></i> 
-
-         <!-- <input class="animate__animated animate__fadeInDown"  type="button" value="Delete" class="btn red"> -->
-            <!-- {{ note.token}} -->
-            
-        </li>    
-        <div *ngIf="editState == true && editNote.id === note.id">
+<div class=" card" *ngIf="sign">
+    <div class="card-content animate__animated animate__fadeInDown">
+        <span class="card-title">Sign up</span>
+        <form (ngSubmit)="onSignUp()" class="col s6">
             <div class="row">
                 <div class="input-field col s6">
-                    <input type="text" placeholder="Add Title" [(ngModel)]="note.title" name="title">
-                    <label>Title</label>
+                    <input type="text" placeholder="username" [(ngModel)]="user.username" name="title">
+                    <label>Username</label>
                 </div>
                 <div class="input-field col s6">
-                   <input type="text" placeholder="Add content" [(ngModel)]="note.content" name="content">
-                   <label>Content</label>
-               </div>
-               <input type="button" value="Update"(click)="update($event,note)" class="btn orange">&nbsp;&nbsp;&nbsp;
-               <input class="animate__animated animate__fadeInDown" (click)="delete($event,note)" type="button" value="Delete" class="btn red">&nbsp;&nbsp;&nbsp;
-               <input class="btn black" type="button" value="cancel" (click)="collapse($event,note)">
+                    <input type="password" placeholder="Password" [(ngModel)]="user.password" name="password">
+                    <label>Password</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="text" placeholder="Mail" [(ngModel)]="user.email" name="email">
+                    <label>Mail</label>
+                </div>
 
+                <div><input type="submit" value="SignUp" class="btn"></div>
 
-         
             </div>
-        </div>
-        </div>
-        
-    </ul>
+
+        </form>
+
+    </div>
 </div>
 
-<ng-template #noNotes>
-    <h5>No content found. Please check collection name. Check capital,small...</h5>
-</ng-template>
-</div>
-<div class="parent-card" *ngIf="!note_active">
-    <div *ngFor="let o of recommend"  class="card">
-        <div class="img">
-               <img src="{{o.urlToImage}}">
-        </div>
-        <div class="lg-screen">
-        <div class="title">
-                 {{o.title}}
-        </div>
-        <div class="content">
-                  {{o.content}}
-        </div>
-        <div class="link">
-          <a href="{{o.url}}" target="blank">Read More...</a>
-        </div>
-        </div>
+<div class=" card verify" *ngIf="verify">
+    <div class="card-content animate__animated animate__fadeInDown">
+        <span class="card-title">Verification</span>
+        <form (ngSubmit)="verify_key()" class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" placeholder="token" [(ngModel)]="user.key" name="title">
+                    <label>Verify code</label>
+                </div>
+
+
+                <div><input type="submit" value="Verify" class="btn"></div>
+                <button
+                    style="position:Absolute;top:1%;right:3%;background:none;border-radius:11px;padding:0.3rem;box-shadow:2px 2px 2px 2px silver;border:none;"
+                    (click)="dismiss_verify()">X</button>
+
+            </div>
+
+        </form>
+
     </div>
-</div> 
+</div>
+<!-- for login using help -->
+<div class=" card verify" *ngIf="verify1">
+    <div class="card-content animate__animated animate__fadeInDown">
+        <span class="card-title">Verification</span>
+        <form (ngSubmit)="help_login()" class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" placeholder="token" [(ngModel)]="user.key" name="title">
+                    <label>Verify code </label>
+                </div>
+
+
+                <div><input type="submit" value="Verify" class="btn"></div>
+                <button
+                    style="position:Absolute;top:1%;right:3%;background:none;border-radius:11px;padding:0.3rem;box-shadow:2px 2px 2px 2px silver;border:none;">Code
+                    has been sent to {{user.email}}</button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<div class="wrap2" *ngIf="load">
+    <div class="wait2">
+        <div class="loader"></div>
+    </div>
+
+</div>
+<div class="wrap1" *ngIf="verify && msging">
+    <div class="wait1" style="padding:10px;padding-top: 20px;color:teal;font-weight:700" (click)="dismissMsg()">
+        {{message}}
+        <p style="font-size: 15px;color:silver;padding:6px;position:absolute;bottom:3%;border-radius:12px">
+            Tap me anywhere to dismiss me</p>
+    </div>
+</div>
+
+<div class="wrap1" *ngIf="msging && err">
+    <div class="wait1" style="padding:10px;padding-top: 20px;color:rgb(170, 22, 22);font-weight:700"
+        (click)="dismissMsg()">
+        {{message}}
+        <p style="font-size: 15px;color:silver;padding:6px;position:absolute;bottom:3%;border-radius:12px">
+            Tap me anywhere to dismiss me</p>
+    </div>
+</div>
+
+<div class=" card" *ngIf="!sign">
+    <div class="card-content animate__animated animate__fadeInDown">
+        <span class="card-title">Sign in</span>
+        <form (ngSubmit)="onSignIn()" class="col s6">
+            <div class="row">
+                <div class="input-field col s4">
+                    <input type="text" placeholder="Username" [(ngModel)]="user.username" name="title">
+                    <label>Username</label>
+                </div>
+                <div class="input-field col s4">
+                    <input type="password" placeholder="Password" [(ngModel)]="user.password" name="content">
+                    <label>Password</label>
+                </div>
+
+                <input type="submit" value="SignIN" class="btn">
+
+            </div>
+            <button
+                style="position:Absolute;bottom:4%;right:15%;background:none;border-radius:11px;padding:0.3rem;color:teal;border:none;font-weight: 700;"
+                (click)="mail_verify()">Help SignIn!</button>
+
+        </form>
+
+    </div>
+</div>
+<div class=" card verify" *ngIf="mail_box">
+    <div class="card-content animate__animated animate__fadeInDown">
+        <span class="card-title">Enter Account</span>
+        <form (ngSubmit)="enter_account(user.email)" class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" placeholder="email" [(ngModel)]="user.email" name="email">
+                    <label>Enter Mail id</label>
+                </div>
+
+
+                <div><input type="submit" value="Verify" class="btn" [disabled]="user.email==''">
+
+                </div>
+                <!-- <div> <button
+                        style="position:Absolute;top:1%;right:3%;background:none;border-radius:11px;padding:0.3rem;box-shadow:2px 2px 2px 2px silver;border:none;"
+                        (click)="mail_verify1()">X</button></div> -->
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<div class="sign_msg" *ngIf="signin_msg">
+    Signed in Succesfully!
+    <button [routerLink]="['/notes']" class="btn btn-sucess">Proceed</button>
+</div>
